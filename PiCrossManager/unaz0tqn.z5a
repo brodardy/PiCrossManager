@@ -1,0 +1,43 @@
+﻿/*
+ * Yannick Brodard
+ * 23/02/15
+ * Cell class
+ */
+
+namespace PiCrossManager
+{
+    /// <summary>
+    /// Defines a cell of the PiCross game
+    /// </summary>
+    public class Cell
+    {
+        /* CLASS VARIABLES */
+        private bool _isBlack;
+        private Position _position;
+
+        /* CLASS PROPRIETIES */
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsBlack
+        {
+            get { return _isBlack; }
+            private set { _isBlack = value; }
+        }
+
+        public Position Position
+        {
+            get { return _position; }
+            private set { _position = value; }
+        }
+
+        /* CLASS CONSTRUCTORS */
+        public Cell(int pPosX, int pPosY, bool pIsBlack) : this(new Position(pPosX, pPosY), pIsBlack) { /* no code... */ }
+
+        public Cell(Position pPosition, bool pIsBlack)
+        {
+            this.IsBlack = pIsBlack;
+            this.Position = pPosition;
+        }
+    }
+}
