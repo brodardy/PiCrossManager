@@ -4,7 +4,7 @@
  * Position class
  */
 
-namespace PiCrossManager
+namespace PiCrossManager.Game
 {
     /// <summary>
     /// Defines the coordinates of an object (X and Y)

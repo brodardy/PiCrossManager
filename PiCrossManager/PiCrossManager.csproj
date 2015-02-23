@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -45,17 +46,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\Cell.cs" />
-    <Compile Include="Loader\LoaderView.cs">
+    <Compile Include="Game\Position.cs" />
+    <Compile Include="Generator\GeneratorView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Loader\LoaderView.Designer.cs">
-      <DependentUpon>LoaderView.cs</DependentUpon>
+    <Compile Include="Generator\GeneratorView.Designer.cs">
+      <DependentUpon>GeneratorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Game\Position.cs" />
+    <Compile Include="Generator\MyPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Loader\LoaderView.resx">
-      <DependentUpon>LoaderView.cs</DependentUpon>
+    <EmbeddedResource Include="Generator\GeneratorView.resx">
+      <DependentUpon>GeneratorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

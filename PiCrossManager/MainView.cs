@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace PiCrossManager
 {
-    public partial class LoaderView : Form
+    public partial class MainView : Form
     {
-        public LoaderView()
+        public MainView()
         {
             InitializeComponent();
+        }
+
+        private void piCrossGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new PiCrossManager.Generator.GeneratorView().Show();
         }
     }
 }

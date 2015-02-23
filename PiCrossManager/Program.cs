@@ -16,7 +16,7 @@ namespace PiCrossManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoaderView());
+            Application.Run(new MainView());
         }
     }
 }

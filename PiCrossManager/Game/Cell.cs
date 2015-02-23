@@ -4,7 +4,7 @@
  * Cell class
  */
 
-namespace PiCrossManager
+namespace PiCrossManager.Game
 {
     /// <summary>
     /// Defines a cell of the PiCross game
