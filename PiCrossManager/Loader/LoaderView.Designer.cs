@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // MainView
+            // LoaderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(890, 512);
-            this.Name = "MainView";
+            this.ClientSize = new System.Drawing.Size(832, 621);
+            this.Name = "LoaderView";
             this.Text = "PiCross Manager";
             this.ResumeLayout(false);
 
