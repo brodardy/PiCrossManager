@@ -39,6 +39,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.numThreshold = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.tbxSaveLocation = new System.Windows.Forms.TextBox();
+            this.btnChangeSaveLocation = new System.Windows.Forms.Button();
             this.pbxFinal = new PiCrossManager.Generator.MyPictureBox();
             this.pbxGrayscale = new PiCrossManager.Generator.MyPictureBox();
             this.pbxOriginal = new PiCrossManager.Generator.MyPictureBox();
@@ -85,6 +88,7 @@
             this.btnSaveXML.TabIndex = 6;
             this.btnSaveXML.Text = "Save";
             this.btnSaveXML.UseVisualStyleBackColor = true;
+            this.btnSaveXML.Click += new System.EventHandler(this.btnSaveXML_Click);
             // 
             // ofdOpenImage
             // 
@@ -138,6 +142,34 @@
             this.label6.TabIndex = 12;
             this.label6.Text = "Threshold";
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(248, 349);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(200, 23);
+            this.btnRefresh.TabIndex = 13;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // tbxSaveLocation
+            // 
+            this.tbxSaveLocation.Location = new System.Drawing.Point(248, 379);
+            this.tbxSaveLocation.Name = "tbxSaveLocation";
+            this.tbxSaveLocation.ReadOnly = true;
+            this.tbxSaveLocation.Size = new System.Drawing.Size(200, 20);
+            this.tbxSaveLocation.TabIndex = 14;
+            // 
+            // btnChangeSaveLocation
+            // 
+            this.btnChangeSaveLocation.Location = new System.Drawing.Point(347, 406);
+            this.btnChangeSaveLocation.Name = "btnChangeSaveLocation";
+            this.btnChangeSaveLocation.Size = new System.Drawing.Size(100, 23);
+            this.btnChangeSaveLocation.TabIndex = 15;
+            this.btnChangeSaveLocation.Text = "Change";
+            this.btnChangeSaveLocation.UseVisualStyleBackColor = true;
+            this.btnChangeSaveLocation.Click += new System.EventHandler(this.btnChangeSaveLocation_Click);
+            // 
             // pbxFinal
             // 
             this.pbxFinal.Location = new System.Drawing.Point(16, 269);
@@ -170,6 +202,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 481);
+            this.Controls.Add(this.btnChangeSaveLocation);
+            this.Controls.Add(this.tbxSaveLocation);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.numThreshold);
             this.Controls.Add(this.label5);
@@ -212,6 +247,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numThreshold;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.TextBox tbxSaveLocation;
+        private System.Windows.Forms.Button btnChangeSaveLocation;
 
     }
 }

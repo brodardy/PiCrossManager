@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\Cell.cs" />
+    <Compile Include="Game\Line.cs" />
     <Compile Include="Game\Position.cs" />
+    <Compile Include="Game\Puzzle.cs" />
     <Compile Include="Generator\GeneratorView.cs">
       <SubType>Form</SubType>
     </Compile>

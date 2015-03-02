@@ -67,7 +67,7 @@ namespace PiCrossManager.Generator
             numThreshold.Maximum = THRESHOLD_MAX;
             numThreshold.Value = 128;
 
-            tbxSaveLocation.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Untitled_Puzzle.xml";
+            tbxSaveLocation.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             this.loadImage();
             this.loadGrayScale();
@@ -286,6 +286,7 @@ namespace PiCrossManager.Generator
 
         private void btnSaveXML_Click(object sender, EventArgs e)
         {
+
             Bitmap img = new Bitmap(FinalImage);    // Prapare image...
             int height = img.Height;
             int width = img.Width;
@@ -311,8 +312,8 @@ namespace PiCrossManager.Generator
             writer.WriteString(datetime);
             writer.WriteEndElement(); // End CreatedDate
             writer.WriteStartElement("CreatedBy");
-            writer.WriteAttributeString("name", Path.GetFileNameWithoutExtension(System.AppDomain.CurrentDomain.FriendlyName));
-            writer.WriteAttributeString("version", version);
+            writer.WriteAttributeString("name", "picross_manager");
+            writer.WriteString(version);
             writer.WriteEndElement(); // End CreatedBy
             writer.WriteStartElement("NbLines");
             writer.WriteAttributeString("dim", height.ToString());
@@ -328,13 +329,12 @@ namespace PiCrossManager.Generator
             // Lines
             for (int h = 0; h < height; h++)
             {
-                writer.WriteStartElement("Line");
                 StringBuilder sb = new StringBuilder();
                 List<int> nbrs = new List<int>();
                 for (int w = 0; w < width; w++)
                 {
-                    sb.Append((img.GetPixel(w, h).R == 255) ? "0" : "1");
-                    nbrs.Add((img.GetPixel(w, h).R == 255) ? 0 : 1);
+                    sb.Append((img.GetPixel(w, h) == Color.White) ? "0" : "1");
+                    nbrs.Add((img.GetPixel(w, h) == Color.White) ? 0 : 1);
                 }
                 string flush = sb.ToString();
 
@@ -345,206 +345,18 @@ namespace PiCrossManager.Generator
                 writer.WriteString(flush);
                 writer.WriteEndElement(); // End flush
 
-                sb.Clear();
                 writer.WriteStartElement("indices_string");
-                int n = 0;
                 for (int i = 0; i < nbrs.Count; i++)
                 {
-                    if (nbrs[i] == 1)
-                    {
-                        n++;
-                    }
-                    else
-                    {
-                        if (n > 0)
-                        {
-                            sb.Append(n.ToString() + " ");
-                        }
-                        n = 0;
-                    }
+                    
                 }
-                if (n > 0)
-                {
-                    sb.Append(n.ToString() + " ");
-                    n = 0;
-                }
-                writer.WriteString(sb.ToString().Trim());
-                writer.WriteEndElement(); // End indices_string
-
-                sb.Clear();
-                writer.WriteStartElement("indices_string_separator");
-                n = 0;
-                for (int i = 0; i < nbrs.Count; i++)
-                {
-                    if (nbrs[i] == 1)
-                    {
-                        n++;
-                    }
-                    else
-                    {
-                        if (n > 0)
-                        {
-                            sb.Append(n.ToString() + ", ");
-                        }
-                        n = 0;
-                    }
-                }
-                if (n > 0)
-                {
-                    sb.Append(n.ToString() + ", ");
-                    n = 0;
-                }
-                string indices_string_separator = sb.ToString().Trim();
-                if (indices_string_separator.Length > 0)
-                {
-                    writer.WriteString(indices_string_separator.Substring(0, indices_string_separator.Length - 1));
-                }
-                writer.WriteEndElement(); // End indices_string_separator
-
-                int pos = 0;
-                n = 0;
-                for (int i = 0; i < nbrs.Count; i++)
-                {
-                    if (nbrs[i] == 1)
-                    {
-                        n++;
-                    }
-                    else
-                    {
-                        if (n > 0)
-                        {
-                            writer.WriteStartElement("indice");
-                            writer.WriteAttributeString("position", pos.ToString());
-                            writer.WriteString(n.ToString());
-                            writer.WriteEndElement(); // End indice
-                            pos++;
-                        }
-                        n = 0;
-                    }
-                }
-                if (n > 0)
-                {
-                    writer.WriteStartElement("indice");
-                    writer.WriteAttributeString("position", pos.ToString());
-                    writer.WriteString(n.ToString());
-                    writer.WriteEndElement(); // End indice
-                    pos++;
-                    n = 0;
-                }
-                writer.WriteEndElement(); // End Line
+                writer.WriteEndElement(); // End flush
             }
             writer.WriteEndElement(); // End Lines
-
+            
 
             // Cols
             writer.WriteStartElement("Cols");
-            for (int w = 0; w < width; w++)
-            {
-                writer.WriteStartElement("Col");
-                StringBuilder sb = new StringBuilder();
-                List<int> nbrs = new List<int>();
-                for (int h = 0; h < height; h++)
-                {
-                    sb.Append((img.GetPixel(w, h).R == 255) ? "0" : "1");
-                    nbrs.Add((img.GetPixel(w, h).R == 255) ? 0 : 1);
-                }
-                string flush = sb.ToString();
-
-                writer.WriteStartElement("index");
-                writer.WriteString(w.ToString());
-                writer.WriteEndElement(); // End index
-                writer.WriteStartElement("flush");
-                writer.WriteString(flush);
-                writer.WriteEndElement(); // End flush
-
-                sb.Clear();
-                writer.WriteStartElement("indices_string");
-                int n = 0;
-                for (int i = 0; i < nbrs.Count; i++)
-                {
-                    if (nbrs[i] == 1)
-                    {
-                        n++;
-                    }
-                    else
-                    {
-                        if (n > 0)
-                        {
-                            sb.Append(n.ToString() + " ");
-                        }
-                        n = 0;
-                    }
-                }
-                if (n > 0)
-                {
-                    sb.Append(n.ToString() + " ");
-                    n = 0;
-                }
-                writer.WriteString(sb.ToString().Trim());
-                writer.WriteEndElement(); // End indices_string
-
-                sb.Clear();
-                writer.WriteStartElement("indices_string_separator");
-                n = 0;
-                for (int i = 0; i < nbrs.Count; i++)
-                {
-                    if (nbrs[i] == 1)
-                    {
-                        n++;
-                    }
-                    else
-                    {
-                        if (n > 0)
-                        {
-                            sb.Append(n.ToString() + ", ");
-                        }
-                        n = 0;
-                    }
-                }
-                if (n > 0)
-                {
-                    sb.Append(n.ToString() + ", ");
-                    n = 0;
-                }
-                string indices_string_separator = sb.ToString().Trim();
-                if (indices_string_separator.Length > 0)
-                {
-                    writer.WriteString(indices_string_separator.Substring(0, indices_string_separator.Length - 1));
-                }
-                writer.WriteEndElement(); // End indices_string_separator
-
-                int pos = 0;
-                n = 0;
-                for (int i = 0; i < nbrs.Count; i++)
-                {
-                    if (nbrs[i] == 1)
-                    {
-                        n++;
-                    }
-                    else
-                    {
-                        if (n > 0)
-                        {
-                            writer.WriteStartElement("indice");
-                            writer.WriteAttributeString("position", pos.ToString());
-                            writer.WriteString(n.ToString());
-                            writer.WriteEndElement(); // End indice
-                            pos++;
-                        }
-                        n = 0;
-                    }
-                }
-                if (n > 0)
-                {
-                    writer.WriteStartElement("indice");
-                    writer.WriteAttributeString("position", pos.ToString());
-                    writer.WriteString(n.ToString());
-                    writer.WriteEndElement(); // End indice
-                    pos++;
-                    n = 0;
-                }
-                writer.WriteEndElement(); // End Col
-            }
             writer.WriteEndElement(); // End Cols
             writer.WriteEndElement(); // End Puzzle
             writer.WriteEndElement(); // End PicrossPuzzle
