@@ -28,6 +28,8 @@ namespace PiCrossManager.Generator
         private Image _finalImage;
         private int _threshold;
 
+        private bool _imgLoaded;
+
         public int Threshold
         {
             get { return _threshold; }
@@ -56,6 +58,8 @@ namespace PiCrossManager.Generator
         {
             InitializeComponent();
 
+            this._imgLoaded = false;
+
             numHeight.Minimum = IMG_SIZE_MIN;
             numHeight.Maximum = IMG_SIZE_MAX;
             numHeight.Value = IMG_SIZE_MAX;
@@ -70,10 +74,16 @@ namespace PiCrossManager.Generator
             tbxSaveLocation.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Untitled_Puzzle.xml";
 
             this.loadImage();
-            this.loadGrayScale();
+            if (this._imgLoaded)
+            {
+                this.loadGrayScale();
 
-            this.pbxOriginal.Image = this.OrigImage;
-            this.pbxGrayscale.Image = this.GrayscaleImage;
+                this.pbxOriginal.Image = this.OrigImage;
+                this.pbxGrayscale.Image = this.GrayscaleImage;
+            }
+            else {
+                this.Close();
+            }
         }
 
         public void UpdateFinal()
@@ -94,6 +104,7 @@ namespace PiCrossManager.Generator
                 try
                 {
                     this.OrigImage = new Bitmap(this.ofdOpenImage.FileName);
+                    this._imgLoaded = true;
                 }
                 catch (Exception e)
                 {
@@ -324,6 +335,8 @@ namespace PiCrossManager.Generator
 
             /* PUZZLE */
             writer.WriteStartElement("Puzzle");
+
+
             writer.WriteStartElement("Lines");
             // Lines
             for (int h = 0; h < height; h++)
@@ -548,6 +561,8 @@ namespace PiCrossManager.Generator
             writer.WriteEndElement(); // End Cols
             writer.WriteEndElement(); // End Puzzle
             writer.WriteEndElement(); // End PicrossPuzzle
+
+            writer.Flush();
             writer.Close();
         }
 

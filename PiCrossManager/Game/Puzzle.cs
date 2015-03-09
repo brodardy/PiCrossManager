@@ -8,14 +8,28 @@ namespace PiCrossManager.Game
 {
     public class Puzzle
     {
-        private int _nbLines;
-        private int _nbCols;
-        private string _name;
-        private DateTime _creationDate;
-        private string _createdBy;
-        private string _createdByVersion;
+        private Cell[,] _cells;
+        private int width;
+        private int height;
 
-        private Line[] _rows;
-        private Line[] _cols;
+        public int Height
+        {
+            get { return height; }
+            set { height = value; }
+        }
+
+        public int Width
+        {
+            get { return width; }
+            set { width = value; }
+        }
+
+        public Cell[,] Cells
+        {
+            get { return _cells; }
+            set { _cells = value; }
+        }
+
+        public Puzzle() { }
     }
 }
